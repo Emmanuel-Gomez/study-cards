@@ -1,0 +1,26 @@
+{
+	"name": "study-cards",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node fuse",
+		"dist": "node fuse dist",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@types/react": "^16.8.19",
+		"@types/react-dom": "^16.8.4",
+		"react": "^16.0.0",
+		"react-dom": "^16.0.0",
+		"reflect-metadata": "^0.1.8"
+	},
+	"devDependencies": {
+		"fuse-box": "3.5.0",
+		"tslib": "^1.7.1",
+		"typescript": "^2.1.4",
+		"uglify-js": "^3.0.15"
+	}
+}
