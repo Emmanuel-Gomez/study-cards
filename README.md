@@ -1,6 +1,4 @@
-# Fusebox and react without Babel
-
-
+# Simple Study Cards
 ```
 npm install
 node fuse.js
