@@ -1,19 +1,21 @@
 import * as React from 'react';
 import { observable } from "mobx";
 import { observer } from "mobx-react";
-import mergeClassNames from "classnames";
-import { withStyles } from '@material-ui/styles';
 
 import {
 	Button,
 	TextField,
-	WithStyles,
 	Typography,
 	CardActions,
-	CardContent,
-	createStyles,
 	Card as MUCard,
+	CardContent as MUCardContent,
 } from '@material-ui/core';
+
+import { 
+	withStyles,
+	WithStyles,
+	createStyles,
+} from '@material-ui/styles';
 
 const styles = createStyles({
 	root: {
@@ -41,8 +43,10 @@ interface ICard {
 	onFlip: () => void;
 }
 
+type IProps = ICard & WithStyles<typeof styles>
+
 @observer
-class Card extends React.Component<ICard & WithStyles<typeof styles>> {
+class CardContent extends React.Component<IProps> {
 
 	@observable flip: boolean = false;
 
@@ -51,7 +55,7 @@ class Card extends React.Component<ICard & WithStyles<typeof styles>> {
 		this.flip = !this.flip;
 	}
 
-	public getCardContent(){
+	public getCardContent(): React.ReactNode {
 
 		const {
 			classes
@@ -60,7 +64,7 @@ class Card extends React.Component<ICard & WithStyles<typeof styles>> {
 		if(this.flip) {
 			return (
 				<div>
-					<CardContent>
+					<MUCardContent>
 
 						<Typography gutterBottom variant="h5" component="h2">
 							Svar
@@ -70,7 +74,7 @@ class Card extends React.Component<ICard & WithStyles<typeof styles>> {
 							San Jose
 						</Typography>
 
-					</CardContent>
+					</MUCardContent>
 					
 					<CardActions className={classes.footer}>
 
@@ -85,7 +89,7 @@ class Card extends React.Component<ICard & WithStyles<typeof styles>> {
 		else {
 			return(
 				<div>
-					<CardContent>
+					<MUCardContent>
 
 						<Typography gutterBottom variant="h5" component="h2">
 							Fråga
@@ -97,7 +101,7 @@ class Card extends React.Component<ICard & WithStyles<typeof styles>> {
 
 						<TextField className={classes.textArea} multiline rows="10" variant="outlined"/>
 
-					</CardContent>
+					</MUCardContent>
 
 					<CardActions className={classes.footer}>
 
@@ -121,11 +125,10 @@ class Card extends React.Component<ICard & WithStyles<typeof styles>> {
 
 		return(
 			<MUCard className={classes.root}>
-				{this.getCardContent()}
+				{/* {this.getCardContent()} */}
 			</MUCard>
-			
 		)
 	}
 }
 
-export default withStyles(styles)(Card);
+export default withStyles(styles)(CardContent);

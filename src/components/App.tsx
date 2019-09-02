@@ -1,23 +1,39 @@
-import * as React from "react";
 import '../style/App.css';
-import Card from "./Card";
-import Flipper from "./Flipper";
+import * as React from "react";
 import { observer } from "mobx-react";
-import { observable } from "mobx";
+
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { createStyles, WithStyles, withStyles } from "@material-ui/styles";
+
+import Home from "./Home";
+import CardBuilder from "./CardBuilder"; 
+
+const styles = createStyles({
+	wrapper: {
+		display: "flex",
+		flexDirection: "column"
+	}
+})
 
 @observer
-export class App extends React.Component {
+class App extends React.Component<WithStyles<typeof styles>> {
 
-	@observable flipped: boolean = false;
+	render(): React.ReactNode {
 
-	render() {
 		return (
-			<div className="App">
-				<h1>Study Cards</h1>
-				<Flipper flipped={this.flipped}>
-					<Card onFlip={() => this.flipped = !this.flipped}/>
-				</Flipper>
-			</div>
+			<Router>
+				<div className="App">
+					<h1>Study Cards</h1>
+					<Switch>
+
+						<Route path="/" exact component={Home}/>
+						<Route path="/newCards" component={CardBuilder}/>
+
+					</Switch>
+				</div>
+			</Router>
 		);
 	}
 }
+
+export default withStyles(styles)(App);
